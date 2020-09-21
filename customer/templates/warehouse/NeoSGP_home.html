@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sweet Guilty Pleasures</title>
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% load static %}
+    <link rel = "stylesheet" type="text/css" href="{% static 'css/Staple.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Home.css' %}">
+<script>
+function showTxt(){
+	document.getElementById("txt").innerHTML = "Service code encoded, please choose among our available products.";
+}
+</script>
+</head>
+
+<body>
+	<div class="bg pink">
+	<h1 id="intro" class="shadow p-10 mb-10" style="margin-top:125px;">Welcome to Sweet Guilty Pleasures Cebu</h1><!-- placeimage here -->
+  
+<!-- The flexible grid (content) -->
+<div class="container-fluid">
+<div class="row" >
+  
+	<div class="col-lg-6" style="background-color:rgba(255,255,255,0.6);">
+    
+		<img src="/static/img/SGPlogo.jpg" alt="SGPlogo" style="width:400px;" id="lugo">
+	</div>
+	<div class="col-lg-6" style="background-color:rgba(255,255,255,0.6);">
+		<form role="form" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+      {% csrf_token %}
+			<h4 class="shadow p-10 mb-10" style="background-color:#ff9999;margin:10px;border:5px solid;border-color:#ff3333;border-radius:15px;">Member's Access</h4>
+			<br><br>
+            <center><button type="submit" style="background-color:#f18973; width:30%; border-color:#f18973" class="btn btn-success btn-block" width="20px"> SIGN UP</button> </center>
+            <br><br>
+            <center><button type="submit" style="background-color:#f18973; width:30%; border-color:#f18973" class="btn btn-success btn-block" width="20px"> LOGIN</button> </center>
+          </form>
+	
+
+<!-- The flexible grid (content) -->
+
+	
+  <button type='button' class='btn btn-default btn-lg' id='myAbtUsBtn' style="background-color:#ff9999;margin:10px;border:5px solid;border-color:#ff3333;border-radius:15px;margin:50px;">About Us</button>
+  <button type='button' class='btn btn-default btn-lg' id='myCntctUsBtn' style="background-color:#ff9999;margin:10px;border:5px solid;border-color:#ff3333;border-radius:15px;margin-left:250px;">Contact Us</button>
+                  
+                  
+                    <!-- Modal for Log in-->
+    <div class='modal fade' id='myAbtUsModal' role='dialog'>
+      <div class='modal-dialog modal-lg'>
+              
+                        <!-- Modal content-->
+        <div class='modal-content'>
+          <div class='modal-header' style='padding:35px 50px;'>
+            <h4 align="center">ABOUT US</h4>
+              <button type='button' class='close' data-dismiss='modal'>&times;</button>
+          </div>
+          <div class='modal-body' style='padding:40px 50px;'>
+            <div class="container-fluid">
+              <div class="row">
+            <div class="col-lg-6" style="background-color:rgba(255,255,255,0.6);">
+            <h2>About the Shop</h2>
+            <p style="text-align:justify;"> Sweet Guilty Pleasures started out as a small dream by the <i>"Petit Chef"</i>, Fae Therese C. Del Rosario,
+            after watching her grandmother's blooming Fresh Lumpia business. And from that dream, grew a desire to make it come true. After two years of training from an international culinary school,
+            </p>
+            <p style="text-align:justify;"> Sweet Guilty Pleasures Cebu has made its name, both online and on Cebu's culinary market. With a wide array of pastries for you to customize, we promise to offer you sweets that are too good to resist, both for the eyes, and the appetite.</p>
+  <figure>
+    <div>
+      
+      <img src="/static/img/Achieve.png" alt="News_feature" style="display:block;margin-left:auto;margin-right:auto;">
+    </div>
+    <figcaption style="text-align:center;"><i>Sweet Guilty Pleasures being featured in Maayong Buntag Kapamilya</i></figcaption>
+  </figure>
+</div>
+<div class="col-lg-6" style="background-color:rgba(255,255,255,0.6);border-color:#ff9999;border-width:medium;">
+  <h2>The Mission</h2>
+    <p style="font-size:30px;"><i>"To provide attractive and delicious treats to customers and pets, with the best quality."</i></p>
+    <br>
+    <h2>The Vision</h2>
+    <p style="font-size:30px;"><i>"Provide treats and sweets that are edible and delightful for anyone and everyone."</i></p>
+    
+  </div>
+</div>
+</div>
+        </div>
+        <div class='modal-footer'>
+                            
+        <p>Not a member? <a href='#' id='insta-sign'>Sign Up</a></p>
+       
+          </div>
+      </div>
+                </div>
+              </div>
+      <div class='modal fade' id='myCntctUsModal' role='dialog'>
+        <div class='modal-dialog'>
+          <div class='modal-content'>
+            <div class='modal-header' style='padding:35px 50px;'>
+              <h4 align="center">Contacts</h4>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            </div>
+          <div class='modal-body' style='padding:40px 50px;'>
+            <div class="container-fluid">
+              <div class="row">
+                <a href="https://www.facebook.com/sweetgpcebu"><h5>Visit our official facebook page!</h5></a>
+              </div>
+            </div>
+          </div>
+          <div class='modal-footer'>
+                            
+        <p>Other contact details are exclusive to members. <a href='#' id='insta-sign'>Sign Up Now!</a></p>
+       
+          </div>
+        </div>
+      </div>
+    </div>
+              
+                  <script>
+                  $(document).ready(function(){
+                    $('#myAbtUsBtn').click(function(){
+                      $('#myAbtUsModal').modal();
+                    });
+                  });
+                  </script>
+                  <script>
+                  $(document).ready(function(){
+                    $('#insta-sign').click(function(){
+                      $('#myCntctUsModal').modal();
+                      $('#myAbtUsModal').modal('toggle');
+                    });
+                  });
+                  </script>
+                  <script>
+                  $(document).ready(function(){
+                    $('#logback').click(function(){
+                      $('#myAbtUsModal').modal();
+                    $('#myCntctUsModal').modal('toggle');
+                    });
+                  });
+                  </script>
+                  <script>
+                      $(document).ready(function(){
+                        $('#myCntctUsBtn').click(function(){
+                          $('#myCntctUsModal').modal();
+                        });
+                      });
+                  </script>
+</div>
+</div>
+</div>
+<footer><h1> Vince Xavier C. del Rosario <h1></footer>
+</div>
+
+</body>
+
+</html>

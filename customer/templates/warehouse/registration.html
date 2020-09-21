@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Customer Registration</title>
+  {% load static %}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/css/bootstrap.min.css' %}">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/css/mdb.min.css' %}">
+  <!-- Your custom styles (optional) -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/stepper.css' %}">
+  
+        <link rel = "stylesheet" type="text/css" href="{% static 'css/Staple.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Home.css' %}">
+
+
+</head>
+<body class="bg">
+<div>
+  <!-- Start your project here-->
+    
+      <!-- Grid row -->
+      {% block content %}
+    <div class="row pt-5 d-flex flex-column justify-content-center align-items-center">
+
+        <!-- Grid column -->
+
+        <div class="col-md-5 pl-5 pl-md-0 pb-5 ">
+
+        <!-- Stepper -->
+                <div class="steps-form-3">
+                    <div class="steps-row-3 setup-panel-3 d-flex flex-row justify-content-between ">
+                        <div class="steps-step-3">
+                            <a href="#step-1" type="button" class="btn btn-info btn-circle-3 waves-effect p-1" data-toggle="tooltip" data-placement="top" title="Basic Information"><strong aria-hidden="true">Step 1</strong></a>
+                        </div>
+                        
+                        <div class="steps-step-3">
+                            <a href="#step-2" type="button" class="btn btn-pink btn-circle-3 waves-effect p-1" data-toggle="tooltip" data-placement="top" title="Basic Information"><strong aria-hidden="true">Step 2</strong></a>
+                        </div>
+
+                        <div class="steps-step-3">
+                            <a href="#step-3" type="button" class="btn btn-info btn-circle-3 waves-effect p-1" data-toggle="tooltip" data-placement="top" title="Basic Information"><strong aria-hidden="true">Step 3</strong></a>
+                        </div>
+                        <div class="steps-step-3">
+                            <a href="#step-4" type="button" class="btn btn-pink btn-circle-3 waves-effect p-1" data-toggle="tooltip" data-placement="top" title="Basic Information"><strong aria-hidden="true">Step 4</strong></a>
+                        </div>
+                        <div class="steps-step-3">
+                            <a href="#step-5" type="button" class="btn btn-pink btn-circle-3 waves-effect p-1" data-toggle="tooltip" data-placement="top" title="Basic Information"><strong aria-hidden="true">Step 5</strong></a>
+                        </div>
+                        <div class="steps-step-3">
+                            <a href="#step-6" type="button" class="btn btn-pink btn-circle-3 waves-effect p-1" data-toggle="tooltip" data-placement="top" title="Basic Information"><strong aria-hidden="true">Step 6</strong></a>
+                        </div>
+                        <div class="steps-step-3">
+                            <a href="#step-7" type="button" class="btn btn-pink btn-circle-3 waves-effect p-1" data-toggle="tooltip" data-placement="top" title="Basic Information"><strong aria-hidden="true">Step 7</strong></a>
+                        </div>
+                        <div class="steps-step-3 no-height">
+                            <a href="#step-8" type="button" class="btn btn-pink btn-circle-3 waves-effect p-1" data-toggle="tooltip" data-placement="top" title="Basic Information"><strong aria-hidden="true">Step 8</strong></a>
+                        </div>
+                        </div>
+                    </div>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-7">
+
+            <form id="form" role="form" action="" method="POST" autocomplete= "off" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- First Step -->
+                <div class="row setup-content-3" id="step-1">
+                    <div class="col-md-12">
+                        
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Basic Information</strong></h3>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custname" data-error="wrong" data-success="right">NAME: Firstname, Middle Name, Lastname</label>
+                            <input id="custname" name="name" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custaddress" data-error="wrong" data-success="right">
+                            ADDRESS: Street, Brgy, City, Prov, Zip, Country 
+                            </label>
+                            <input id="custaddress" name="address" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custbday" data-error="wrong" data-success="right">BIRTHDATE: DD/MM/YYYY  </label>
+                            <input id="custbday" name="birday" type="date" required="required" class="form-control validate">
+                        </div>
+                        <!--<div class="form-group md-form font-weight-bold">
+                            <label for="custstatus" data-error="wrong" data-success="right">
+                            STATUS: Single , Married, Widow, Divorced 
+                            </label>
+                            <input id="custstatus" name="statusu" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custgender" data-error="wrong" data-success="right">
+                            ADDRESS: Male or Female
+                            </label>
+                            <input id="custgender" name="genderu" type="text" required="required" class="form-control validate">
+                        </div>-->
+                        <div >
+                            <strong>STATUS:</strong><br>
+                            
+                              <label for="single">Single</label>
+                              <input type="radio" name="statusu" id="single" value="single"><br>
+                              <label for="Married">Married</label>
+                              <input type="radio" name="statusu" id="Married" value="Married"><br>
+                              <label for="Widow/er">Widow/er</label>
+                              <input type="radio" name="statusu" id="Widow/er" value="Widow/er"><br><br>
+                              <label for="Divorced">Divorced</label>
+                              <input type="radio" name="statusu" id="Divorced" value="Divorced"><br><br>
+                            
+                            
+                        </div>
+
+                        <div >
+                            <strong>Gender:</strong><br>
+                            
+                              <label for="male">Male</label>
+                              <input type="radio" name="genderu" id="male" value="male"><br>
+                              <label for="female">Female</label>
+                              <input type="radio" name="genderu" id="female" value="female"><br>
+                            
+                            
+                        </div>
+                        <button class="btn btn-mdb-color btn-rounded nextBtn-3 float-right" type="button">Next</button>
+                        <button type ="submit" class="btn btn-success btn-rounded float-right">Submit</button>-->
+                    </div>
+                </div>
+            </form>
+                <!-- Second Step -->
+                <div class="row setup-content-3" id="step-2">
+                    <div class="col-md-12">
+                         <br><br>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Basic Information</strong></h3>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custspouse" data-error="wrong" data-success="right">Spouse's Name</label>
+                            <input id="custspouse" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custspouseoccu" data-error="wrong" data-success="right">SPOUSE OCCUPATION </label>
+                            <input id="custspouseoccu" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custchild" data-error="wrong" data-success="right">NO OF CHILDREN </label>
+                            <input id="custchild" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custmother" data-error="wrong" data-success="right">MOTHER’S NAME </label>
+                            <input id="custmother" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custmotheroccu" data-error="wrong" data-success="right">MOTHER’S OCCUPATION  </label>
+                            <input id="custmotheroccu" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custfather" data-error="wrong" data-success="right">FATHER’S NAME </label>
+                            <input id="custfather" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custfatheroccu" data-error="wrong" data-success="right">FATHER’S OCCUPATION  </label>
+                            <input id="custfatheroccu" type="text" required="required" class="form-control validate">
+                        </div>
+                        <button class="btn btn-mdb-color btn-rounded prevBtn-3 float-left" type="button">Previous</button>
+                        <button class="btn btn-mdb-color btn-rounded nextBtn-3 float-right" type="button">Next</button>
+                    </div>
+                </div>
+
+                <div class="row setup-content-3" id="step-3">
+                    <div class="col-md-12">
+                         <br><br>
+                        <h3 class="font-weight-bold pl-0 my-4 font-weight-bold"><strong>Basic Information</strong></h3>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custheight" data-error="wrong" data-success="right">HEIGHT (CM)</label>
+                            <input id="custheight" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custweight" data-error="wrong" data-success="right">WEIGHT (KG)</label>
+                            <input id="custweight" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custreligion" data-error="wrong" data-success="right">RELIGION  </label>
+                            <input id="custreligion" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div >
+                            <label for="custpp" data-error="wrong" data-success="right">Profile Picture </label>
+                            <input id="custpp" type="file" required="required" class="form-control validate">
+                        </div>
+                        
+                        <button class="btn btn-mdb-color btn-rounded prevBtn-3 float-left" type="button">Previous</button>
+                        <button class="btn btn-mdb-color btn-rounded nextBtn-3 float-right" type="button">Next</button>
+                    </div>
+                </div>
+
+
+                <!-- Third Step -->
+                <div class="row setup-content-3" id="step-4">
+                    <div class="col-md-12">
+                        <br><br>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Educational Backgrounds</strong></h3>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Elementary:</strong></h3>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custelem" data-error="wrong" data-success="right">School</label>
+                            <input id="custelem" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custelemgrade" data-error="wrong" data-success="right">Grade</label>
+                            <input id="custelemgrade" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custelemyear" data-error="wrong" data-success="right">Year Completed</label>
+                            <input id="custelemyear" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custelemawards" data-error="wrong" data-success="right">Awards </label>
+                            <input id="custelemawards" type="text" required="required" class="form-control validate">
+                        </div>
+
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Junior High:</strong></h3>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custjhs" data-error="wrong" data-success="right">School</label>
+                            <input id="custjhs" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custjhsrade" data-error="wrong" data-success="right">Grade</label>
+                            <input id="custjhsgrade" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custjhsyear" data-error="wrong" data-success="right">Year Completed</label>
+                            <input id="custjhsyear" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custjhsawards" data-error="wrong" data-success="right">Awards </label>
+                            <input id="custjhsawards" type="text" required="required" class="form-control validate">
+                        </div>
+
+                        <button class="btn btn-mdb-color btn-rounded prevBtn-3 float-left" type="button">Previous</button>
+                        <button class="btn btn-mdb-color btn-rounded nextBtn-3 float-right" type="button">Next</button>
+                    </div>
+                </div>
+
+                <div class="row setup-content-3" id="step-5">
+                    <div class="col-md-12">
+                        <br><br>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Educational Backgrounds</strong></h3>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Senior High:</strong></h3>
+                        <div class="form-group md-form font-weight-bold ">
+                            <label for="custshs" data-error="wrong" data-success="right">School</label>
+                            <input id="custshs" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custshsgrade" data-error="wrong" data-success="right">Grade</label>
+                            <input id="custshsrade" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custshsyear" data-error="wrong" data-success="right">Year Completed</label>
+                            <input id="custshsyear" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custshsawards" data-error="wrong" data-success="right">Awards </label>
+                            <input id="custshsawards" type="text" required="required" class="form-control validate">
+                        </div>
+
+                        <div >
+                            <strong>STRAND:</strong><br>
+                            <form action="/action_page.php">
+                              <label for="stem">STEM</label>
+                              <input type="radio" name="strand" id="stem" value="stem"><br>
+                              <label for="gas">GAS</label>
+                              <input type="radio" name="strand" id="gas" value="gas"><br>
+                              <label for="abm">ABM</label>
+                              <input type="radio" name="strand" id="abm" value="abm"><br><br>
+                            </form>
+                            
+                        </div>
+
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>College:</strong></h3>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custcolge" data-error="wrong" data-success="right">School</label>
+                            <input id="custcolge" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custcolgecourse" data-error="wrong" data-success="right">Course</label>
+                            <input id="custcolgecourse" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custcolgelvl" data-error="wrong" data-success="right">Level</label>
+                            <input id="custcolgelvl" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custcolgeyear" data-error="wrong" data-success="right">Year Completed</label>
+                            <input id="custcolgeyear" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custcolgeawards" data-error="wrong" data-success="right">Awards </label>
+                            <input id="custcolgeawards" type="text" required="required" class="form-control validate">
+                        </div>
+
+                        <button class="btn btn-mdb-color btn-rounded prevBtn-3 float-left" type="button">Previous</button>
+                        <button class="btn btn-mdb-color btn-rounded nextBtn-3 float-right" type="button">Next</button>
+                    </div>
+                </div>
+
+                <div class="row setup-content-3" id="step-6">
+                    <div class="col-md-12">
+                        <br><br>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Educational Backgrounds</strong></h3>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Post Graduate:</strong></h3>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custpstgrad" data-error="wrong" data-success="right">School</label>
+                            <input id="custpstgrad" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custpstgradcourse" data-error="wrong" data-success="right">Course</label>
+                            <input id="custpstgradcourse" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custpstgradlvl" data-error="wrong" data-success="right">Level</label>
+                            <input id="custpstgradlvl" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custpstgradyear" data-error="wrong" data-success="right">Year Completed</label>
+                            <input id="custpstgradyear" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custpstgradawards" data-error="wrong" data-success="right">Awards </label>
+                            <input id="custpstgradawards" type="text" required="required" class="form-control validate">
+                        </div>
+
+                        <button class="btn btn-mdb-color btn-rounded prevBtn-3 float-left" type="button">Previous</button>
+                        <button class="btn btn-mdb-color btn-rounded nextBtn-3 float-right" type="button">Next</button>
+                    </div>
+                </div>
+
+                <div class="row setup-content-3" id="step-7">
+                    <div class="col-md-12">
+                        <br><br>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Professional Background</strong></h3>
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Trainings:</strong></h3>
+                        <div class="form-group md-form font-weight-bold">
+                            <label for="custtitle" data-error="wrong" data-success="right">Title</label>
+                            <input id="custtitle" type="text" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custsponsor" data-error="wrong" data-success="right">Sponsor</label>
+                            <input id="custsponsor" type="number" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custprofdate" data-error="wrong" data-success="right">Date</label>
+                            <input id="custprofdate" type="date" required="required" class="form-control validate">
+                        </div>
+                        <div class="form-group md-form mt-3 font-weight-bold">
+                            <label for="custvenue" data-error="wrong" data-success="right">Venue </label>
+                            <input id="custvenue" type="text" required="required" class="form-control validate">
+                        </div>
+
+                        <button class="btn btn-mdb-color btn-rounded prevBtn-3 float-left" type="button">Previous</button>
+                        <button class="btn btn-mdb-color btn-rounded nextBtn-3 float-right" type="button">Next</button>
+                    </div>
+                </div>
+
+                <!-- Fourth Step -->
+                <div class="row setup-content-3" id="step-8">
+                    <div class="col-md-12">
+                        <h3 class="font-weight-bold pl-0 my-4"><strong>Finish</strong></h3>
+                        <h2 class="text-center font-weight-bold my-4">Registration completed!</h2>
+                        <button class="btn btn-mdb-color btn-rounded prevBtn-3 float-left" type="button">Previous</button>
+                        <button type ="submit" class="btn btn-success btn-rounded float-right">Submit</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+        <!-- Grid column -->
+
+    </div>
+    {% endblock content %}
+    <!-- Grid row -->
+  <!-- End your project here-->
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript">
+          $(document).ready(function () {
+        var navListItems = $('div.setup-panel-3 div a'),
+            allWells = $('.setup-content-3'),
+            allNextBtn = $('.nextBtn-3'),
+            allPrevBtn = $('.prevBtn-3');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-info').addClass('btn-pink');
+                $item.addClass('btn-info');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allPrevBtn.click(function(){
+            var curStep = $(this).closest(".setup-content-3"),
+                curStepBtn = curStep.attr("id"),
+                prevStepSteps = $('div.setup-panel-3 div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
+
+                prevStepSteps.removeAttr('disabled').trigger('click');
+        });
+
+        allNextBtn.click(function(){
+            var curStep = $(this).closest(".setup-content-3"),
+                curStepBtn = curStep.attr("id"),
+                nextStepSteps = $('div.setup-panel-3 div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+                for(var i=0; i< curInputs.length; i++){
+                    if (!curInputs[i].validity.valid){
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
+                }
+
+                if (isValid)
+                    nextStepSteps.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel-3 div a.btn-info').trigger('click');
+    });
+  </script>
+</div>
+</body>
+</html>
