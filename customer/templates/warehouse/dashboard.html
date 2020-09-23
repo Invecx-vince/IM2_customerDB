@@ -68,10 +68,62 @@
 				      <td>{{customer.birthdate}}</td>
 				      <td>{{customer.address}}</td>
 				      <td>
-				       			<a href="#" data-toggle="modal" data-target="#viewmodal"> View </a>|
-				       			<a href="#" data-toggle="modal" data-target="#deletemodal"> Delete</a>
+				       			<a type="button" class="btn btn-mdb-color btn-rounded" href="#" 
+				       			data-toggle="modal" data-target="#viewmodal-{{customer.id}}"> View </a>|
+
+				       			<a type="button" class="btn btn-mdb-color btn-rounded" href="#" 
+				       			data-toggle="modal" data-target="#deletemodal"> Delete</a>
 				       </td>
 				    </tr>
+
+					<!-- View modal-->
+					<div class="modal fade" id="viewmodal-{{customer.id}}" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Viewing Customer Record</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>	
+															
+								</div>	
+								<div class="modal-body">
+									<div class="form-group md-form font-weight-bold">
+			                            <label for="custname" data-error="wrong" data-success="right">Name: </label>
+			                            <input id="custname" type="text" required="required" class="form-control validate" 
+			                            value={{customer.name}}>
+			                        </div>
+			                        <div class="form-group md-form font-weight-bold">
+			                            <label for="custname" data-error="wrong" data-success="right">Status </label>
+			                            <input id="custname" type="text" required="required" class="form-control validate" 
+			                            value={{customer.status}}>
+			                        </div>
+			                        <div class="form-group md-form font-weight-bold">
+			                            <label for="custname" data-error="wrong" data-success="right">Birthdate: </label>
+			                            <input id="custname" type="date" required="required" class="form-control validate" 
+			                            value={{customer.birthdate}}>
+			                        </div>
+			                        <div class="form-group md-form font-weight-bold">
+			                            <label for="custname" data-error="wrong" data-success="right">Address: </label>
+			                            <input id="custname" type="text" required="required" class="form-control validate" 
+			                            value={{customer.address}}>
+			                        </div>									
+								</div>				
+								<div class="modal-footer">
+									<form id="activateForm" method="post" action="report/startup/deactivate">
+										{% csrf_token %}
+
+										<input type="hidden" id="startup-id">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+										<button type="submit" class="button">Update</button>
+									</form>
+									
+								</div>
+							</div>				
+						</div>			
+					</div >
+
+
 				    {% endfor %}
 				    
 				  </tbody>
@@ -93,49 +145,6 @@
 
 		</div>
 		</div>
-
-		<!-- View modal-->
-		<div class="modal fade" id="viewmodal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Viewing Customer Record</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>	
-												
-					</div>	
-					<div class="modal-body">
-						<div class="form-group md-form font-weight-bold">
-                            <label for="custname" data-error="wrong" data-success="right">Firstname: </label>
-                            <input id="custname" type="text" required="required" class="form-control validate">
-                        </div>
-                        <div class="form-group md-form font-weight-bold">
-                            <label for="custname" data-error="wrong" data-success="right">Lastname: </label>
-                            <input id="custname" type="text" required="required" class="form-control validate">
-                        </div>
-                        <div class="form-group md-form font-weight-bold">
-                            <label for="custname" data-error="wrong" data-success="right">Birthdate: </label>
-                            <input id="custname" type="text" required="required" class="form-control validate">
-                        </div>
-                        <div class="form-group md-form font-weight-bold">
-                            <label for="custname" data-error="wrong" data-success="right">Address City: </label>
-                            <input id="custname" type="text" required="required" class="form-control validate">
-                        </div>									
-					</div>				
-					<div class="modal-footer">
-						<form id="activateForm" method="post" action="report/startup/deactivate">
-							{% csrf_token %}
-
-							<input type="hidden" id="startup-id">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							<button type="submit" class="button">Update</button>
-						</form>
-						
-					</div>
-				</div>				
-			</div>			
-		</div >
 
 
 		<!-- delete modal-->
