@@ -8,12 +8,11 @@ from .models import *
 # Create your views here.
 class BoardView(View):
 	def get(self,request):
-		qs_customers = Customer.objects.all()
-		qs_products = Product.objects.all()
+		consumers = Customer.objects.all()
+		#for tao in consumers:
 		context = {
-			'customers' = qs_customers
-		}
-
+			'customers':consumers
+		}	
 		return render(request,'warehouse/dashboard.html',context)
 
 	def post(self,request):
@@ -56,3 +55,4 @@ class LandingView(View):
 
 	def post(self,request):
 		return render(request,'warehouse/registration.html')
+
