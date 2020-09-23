@@ -12,7 +12,6 @@ class BoardView(View):
 		qs_products = Product.objects.all()
 		context = {
 			'customers' = qs_customers
-			'products' = qs_products
 		}
 
 		return render(request,'warehouse/dashboard.html',context)
@@ -57,4 +56,3 @@ class LandingView(View):
 
 	def post(self,request):
 		return render(request,'warehouse/registration.html')
-
