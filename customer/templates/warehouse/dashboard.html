@@ -54,8 +54,9 @@
 				      <th scope="col">Customer ID</th>
 				      <th scope="col">Name</th>
 				      <th scope="col">Status</th>
+				      <th scope="col">Gender</th>
 				      <th scope="col">Date of Birth</th>
-				      <th scope="col">Address City</th>
+				      <th scope="col">Address</th>
 				      <th scope="col">Action</th>
 				    </tr>
 				  </thead>
@@ -65,6 +66,7 @@
 				      <th scope="row">{{customer.id}}</th>
 				      <td>{{customer.name}}</td>
 				      <td>{{customer.status}}</td>
+				      <td>{{customer.gender}}</td>
 				      <td>{{customer.birthdate}}</td>
 				      <td>{{customer.address}}</td>
 				      <td>
@@ -94,14 +96,19 @@
 			                            value="{{customer.name}}">
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
-			                            <label for="custstatus" data-error="wrong" data-success="right">Status </label>
+			                            <label for="custstatus" data-error="wrong" data-success="right">Status: </label>
 			                            <input id="custstatus" type="text" class="form-control" 
 			                            value="{{customer.status}}">
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
+			                            <label for="custgender" data-error="wrong" data-success="right">Gender: </label>
+			                            <input id="custgender" type="text" class="form-control" 
+			                            value="{{customer.gender}}">
+			                        </div>
+			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custbday" data-error="wrong" data-success="right">Birthdate: </label>
-			                            <input id="custbday" type="text" class="form-control" 
-			                            value="{{customer.birthdate}}">
+			                            <input id="custbday" type="date" class="form-control" 
+			                            value="{{customer.birthdate|date:"Y-m-d"}}">
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custaddres" data-error="wrong" data-success="right">Address: </label>
