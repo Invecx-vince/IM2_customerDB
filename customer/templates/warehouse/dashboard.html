@@ -29,13 +29,6 @@
 			<h1 id="intro" class="shadow p-10 mb-10" style="margin-top:125px;">Customer Dashboard</h1><!-- placeimage here -->
 
 
-		<div class="container-fluid">
-		<div class="row">
-	
-			
-		</div>
-		</div>
-
 		<!-- The flexible grid (content) -->
 		<div class="container-fluid">
 		<div class="row">
@@ -43,10 +36,10 @@
 		  <div class="col-lg-12" style="background-color:rgba(255,255,255,0.6);">
 		    
 		<div align="center">
-		<br><br><br><br><br><br>
+		<br><br>
 		<form role="form" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
       	{% csrf_token %}
-		<p align="right"><button type="submit" class="button button1" >Add Customer</button></p>
+		<p align="right"><button><a type = "button" class="button button1" id="id_registration" href="{% url 'customer:register_view' %}" >Add Customer</button>
 		</form>
 				<table id="myTable" class="display table table-light" >
 				  <thead>
@@ -74,7 +67,7 @@
 				       			data-toggle="modal" data-target="#viewmodal-{{customer.id}}"> View </a>|
 
 				       			<a type="button" class="btn btn-mdb-color btn-rounded" href="#" 
-				       			data-toggle="modal" data-target="#deletemodal"> Delete</a>
+				       			data-toggle="modal" data-target="#deletemodal-{{customer.id}}"> Delete</a>
 				       </td>
 				    </tr>
 
@@ -83,52 +76,77 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Viewing Customer Record</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Customer Record Details</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
-									</button>	
-															
-								</div>	
+									</button>					
+								</div>
+								<form id="updateForm" method="post" >
+								{% csrf_token %}
 								<div class="modal-body">
+									<input type="text" name="customer-id" value = {{customer.id}} hidden>
 									<div class="form-group md-form font-weight-bold ">
 			                            <label for="custname" data-error="wrong" data-success="right">Name: </label>
-			                            <input id="custname" type="text" class="form-control" 
-			                            value="{{customer.name}}">
+			                            <input id="custname" name="customer-name" type="text" class="form-control" value="{{customer.name}}">
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custstatus" data-error="wrong" data-success="right">Status: </label>
-			                            <input id="custstatus" type="text" class="form-control" 
+			                            <input id="custstatus" name="customer-status" type="text" class="form-control" 
 			                            value="{{customer.status}}">
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custgender" data-error="wrong" data-success="right">Gender: </label>
-			                            <input id="custgender" type="text" class="form-control" 
+			                            <input id="custgender" name="customer-gender" type="text" class="form-control" 
 			                            value="{{customer.gender}}">
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custbday" data-error="wrong" data-success="right">Birthdate: </label>
-			                            <input id="custbday" type="date" class="form-control" 
-			                            value="{{customer.birthdate|date:"Y-m-d"}}">
+			                            <input id="custbday" name="customer-bdate" type="date" class="form-control" 
+			                            value="{{customer.birthdate|date:'Y-m-d'}}">
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custaddres" data-error="wrong" data-success="right">Address: </label>
-			                            <input id="custaddres" type="text" class="form-control" 
+			                            <input id="custaddres" name="customer-address" type="text" class="form-control" 
 			                            value="{{customer.address}}">
 			                        </div>									
-								</div>				
+								</div>		
 								<div class="modal-footer">
-									<form id="activateForm" method="post" action="report/startup/deactivate">
-										{% csrf_token %}
-
 										<input type="hidden" id="startup-id">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="submit" class="button">Update</button>
-									</form>
-									
+										<button type="submit" id = "btnUpdate" name = "btnUpdate" class="button">Update</button>
 								</div>
-							</div>				
-						</div>			
-					</div >
+							</div>
+							</form>		
+						</div>
+					</div>
+						
+					
+					<!-- delete modal-->
+		<div class="modal fade" id="deletemodal-{{customer.id}}" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Delete Record of Customer?</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>	
+												
+					</div>
+					<form id="deleteForm" method="post" >
+					{% csrf_token %}
+					<div class="modal-body">
+						<input type="text" name="del-targetID" value = {{customer.id}} hidden>
+						Are you sure about that?						
+					</div>				
+					<div class="modal-footer">
+							<input type="hidden" id="startup-id">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							<button type="submit" id = "btnDelete" name = "btnDelete" class="button">Yes</button>
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
 
 
 				    {% endfor %}
@@ -141,46 +159,8 @@
 		</div>
 
 		</div>
-		<div class="container-fluid">
-		<div class="row">
-			
-		  <div class="col-lg-12" style="background-color:rgba(255,255,255,0.6);">
-		    <h2>Customer Dashboard</h2>
-		    
-			</div>
-		</div>
 
-		</div>
-		</div>
-
-
-		<!-- delete modal-->
-		<div class="modal fade" id="deletemodal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Delete Record of Customer?</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>	
-												
-					</div>	
-					<div class="modal-body">
-						Are you sure about that?						
-					</div>				
-					<div class="modal-footer">
-						<form id="activateForm" method="post" action="report/startup/deactivate">
-							{% csrf_token %}
-
-							<input type="hidden" id="startup-id">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							<button type="submit" class="button">Yes</button>
-						</form>
-						
-					</div>
-				</div>				
-			</div>			
-		</div >
+		
 
 
 		<script>
