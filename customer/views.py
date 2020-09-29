@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import View
 from django.http import HttpResponse
 from .forms import CustomerForm
@@ -8,16 +8,36 @@ from .models import *
 # Create your views here.
 class BoardView(View):
 	def get(self,request):
-		consumers = Customer.objects.all()
-		#for tao in consumers:
+		qs_customers = Customer.objects.all()
+		qs_products = Product.objects.all()
 		context = {
-			'customers':consumers
-		}	
+			'customers' : qs_customers
+		}
+
 		return render(request,'warehouse/dashboard.html',context)
 
 	def post(self,request):
-		return render(request,'warehouse/registration.html')
+		# return render(request,'warehouse/registration.html')
+		if request.method == 'POST':	
+			if 'btnUpdate' in request.POST:
+				custID = request.POST.get("customer-id")
+				namaewa = request.POST.get("customer-name")
+				adres = request.POST.get("customer-address")
+				bday = request.POST.get("customer-bdate")
+				tatus = request.POST.get("customer-status")
+				sex = request.POST.get("customer-gender")
+				up_cstmr = Customer.objects.filter(person_ptr_id = custID).update(name = namaewa , address = adres , birthdate = bday , status = tatus , gender = sex)
+				print(up_cstmr)
+				print('record updated')
+			elif 'btnDelete' in request.POST:
+				custID = request.POST.get("del-targetID")
+				cusTard = Customer.objects.filter(person_ptr_id = custID).delete()
+				personbye = Person.objects.filter(id = custID).delete()
+				print(custID)
+				print('record with said custID is deleted')
+		return redirect('customer:board_view')
 
+		
 
 class RegisterView(View):
 	def get(self,request):
@@ -40,7 +60,9 @@ class RegisterView(View):
 			form = Customer( name = namaewa , address = adres , birthdate = bday , status = tatus , gender = sex )
 			form.save()
 
-			return HttpResponse('Customer Recorded!!!')
+			# return HttpResponse('Customer Recorded!!!')
+			return redirect('customer:board_view')
+			# render(request,'warehouse/dashboard.html')
 
 		else:
 			print(form.errors)
@@ -55,4 +77,3 @@ class LandingView(View):
 
 	def post(self,request):
 		return render(request,'warehouse/registration.html')
-
