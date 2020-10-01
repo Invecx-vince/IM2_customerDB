@@ -39,7 +39,7 @@
 		<br><br>
 		<form role="form" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
       	{% csrf_token %}
-		<p align="right"><button><a type = "button" class="button button1" id="id_registration" href="{% url 'customer:register_view' %}" >Add Customer</button>
+		<p align="right"><button><a type = "button" class="button button1" id="id_registration" href="{% url 'customer:register_view' %}" >Add Customer</button></a>
 		</form>
 				<table id="myTable" class="display table table-light" >
 				  <thead>
@@ -63,10 +63,10 @@
 				      <td>{{customer.birthdate}}</td>
 				      <td>{{customer.address}}</td>
 				      <td>
-				       			<a type="button" class="btn btn-mdb-color btn-rounded" href="#" 
+				       			<a type="button" class="btn btn-mdb-color btn-rounded" 
 				       			data-toggle="modal" data-target="#viewmodal-{{customer.id}}"> View </a>|
 
-				       			<a type="button" class="btn btn-mdb-color btn-rounded" href="#" 
+				       			<a type="button" class="btn btn-mdb-color btn-rounded"
 				       			data-toggle="modal" data-target="#deletemodal-{{customer.id}}"> Delete</a>
 				       </td>
 				    </tr>
@@ -87,17 +87,25 @@
 									<input type="text" name="customer-id" value = {{customer.id}} hidden>
 									<div class="form-group md-form font-weight-bold ">
 			                            <label for="custname" data-error="wrong" data-success="right">Name: </label>
-			                            <input id="custname" name="customer-name" type="text" class="form-control" value="{{customer.name}}">
+			                            <input id="custname" name="customer-name" type="text" class="form-control" value="{{customer.name}}" required="required">
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custstatus" data-error="wrong" data-success="right">Status: </label>
-			                            <input id="custstatus" name="customer-status" type="text" class="form-control" 
-			                            value="{{customer.status}}">
+			                            <select id="custstatus" name="customer-status" type="text" class="form-control" required="required">
+			                            	<option hidden>{{customer.status}} </option>			                            	
+										    <option value="Single">Single </option>
+										    <option value="Married">Married</option>
+										    <option value="Widow/er">Widow/er </option>
+										    <option value="Divorced">Divorced</option>
+										 </select>
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custgender" data-error="wrong" data-success="right">Gender: </label>
-			                            <input id="custgender" name="customer-gender" type="text" class="form-control" 
-			                            value="{{customer.gender}}">
+			                            <select id="custgender" name="customer-gender" type="text" class="form-control" required="required">
+			                            	<option hidden>{{customer.gender}} </option>			                            	
+										    <option value="Male">Male </option>
+										    <option value="Female">Female</option>
+										 </select>			                            
 			                        </div>
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custbday" data-error="wrong" data-success="right">Birthdate: </label>
@@ -107,7 +115,7 @@
 			                        <div class="form-group md-form font-weight-bold">
 			                            <label for="custaddres" data-error="wrong" data-success="right">Address: </label>
 			                            <input id="custaddres" name="customer-address" type="text" class="form-control" 
-			                            value="{{customer.address}}">
+			                            value="{{customer.address}}"required="required">
 			                        </div>									
 								</div>		
 								<div class="modal-footer">
