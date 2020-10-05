@@ -1,187 +1,212 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>DashBoard Customer</title>
+    <head>
+        <title>DashBoard Customer</title>
 
-		<meta charset="utf-8">
-		  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 
-		{% load static %}
-		<link rel = "stylesheet" type="text/css" href="{% static 'css/Staple.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'css/Home.css' %}">
-		<script>
-			function showTxt(){
-				document.getElementById("txt").innerHTML = "Service code encoded, please choose among our available products.";
-			}
-		</script>
-	</head>
+        {% load static %}
+        <link rel = "stylesheet" type="text/css" href="{% static 'css/Staple.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Home.css' %}">
+        <script>
+            function showTxt(){
+                document.getElementById("txt").innerHTML = "Service code encoded, please choose among our available products.";
+            }
+        </script>
+    </head>
 
-	<body>
-			<div class="bg pink">
-			<h1 id="intro" class="shadow p-10 mb-10" style="margin-top:125px;">Customer Dashboard</h1><!-- placeimage here -->
-
-
-		<!-- The flexible grid (content) -->
-		<div class="container-fluid">
-		<div class="row">
-			
-		  <div class="col-lg-12" style="background-color:rgba(255,255,255,0.6);">
-		    
-		<div align="center">
-		<br><br>
-		<form role="form" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
-      	{% csrf_token %}
-		<p align="right"><button><a type = "button" class="button button1" id="id_registration" href="{% url 'customer:register_view' %}" >Add Customer</button></a>
-		</form>
-				<table id="myTable" class="display table table-light" >
-				  <thead>
-				    <tr>
-				      <th scope="col">Customer ID</th>
-				      <th scope="col">Name</th>
-				      <th scope="col">Status</th>
-				      <th scope="col">Gender</th>
-				      <th scope="col">Date of Birth</th>
-				      <th scope="col">Address</th>
-				      <th scope="col">Action</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				    	{% for customer in customers %}
-				      <th scope="row">{{customer.id}}</th>
-				      <td>{{customer.name}}</td>
-				      <td>{{customer.status}}</td>
-				      <td>{{customer.gender}}</td>
-				      <td>{{customer.birthdate}}</td>
-				      <td>{{customer.address}}</td>
-				      <td>
-				       			<a type="button" class="btn btn-mdb-color btn-rounded" 
-				       			data-toggle="modal" data-target="#viewmodal-{{customer.id}}"> View </a>|
-
-				       			<a type="button" class="btn btn-mdb-color btn-rounded"
-				       			data-toggle="modal" data-target="#deletemodal-{{customer.id}}"> Delete</a>
-				       </td>
-				    </tr>
-
-					<!-- View modal-->
-					<div class="modal fade" id="viewmodal-{{customer.id}}" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Customer Record Details</h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>					
-								</div>
-								<form id="updateForm" method="post" >
-								{% csrf_token %}
-								<div class="modal-body">
-									<input type="text" name="customer-id" value = {{customer.id}} hidden>
-									<div class="form-group md-form font-weight-bold ">
-			                            <label for="custname" data-error="wrong" data-success="right">Name: </label>
-			                            <input id="custname" name="customer-name" type="text" class="form-control" value="{{customer.name}}" required="required">
-			                        </div>
-			                        <div class="form-group md-form font-weight-bold">
-			                            <label for="custstatus" data-error="wrong" data-success="right">Status: </label>
-			                            <select id="custstatus" name="customer-status" type="text" class="form-control" required="required">
-			                            	<option hidden>{{customer.status}} </option>			                            	
-										    <option value="Single">Single </option>
-										    <option value="Married">Married</option>
-										    <option value="Widow/er">Widow/er </option>
-										    <option value="Divorced">Divorced</option>
-										 </select>
-			                        </div>
-			                        <div class="form-group md-form font-weight-bold">
-			                            <label for="custgender" data-error="wrong" data-success="right">Gender: </label>
-			                            <select id="custgender" name="customer-gender" type="text" class="form-control" required="required">
-			                            	<option hidden>{{customer.gender}} </option>			                            	
-										    <option value="Male">Male </option>
-										    <option value="Female">Female</option>
-										 </select>			                            
-			                        </div>
-			                        <div class="form-group md-form font-weight-bold">
-			                            <label for="custbday" data-error="wrong" data-success="right">Birthdate: </label>
-			                            <input id="custbday" name="customer-bdate" type="date" class="form-control" 
-			                            value="{{customer.birthdate|date:'Y-m-d'}}">
-			                        </div>
-			                        <div class="form-group md-form font-weight-bold">
-			                            <label for="custaddres" data-error="wrong" data-success="right">Address: </label>
-			                            <input id="custaddres" name="customer-address" type="text" class="form-control" 
-			                            value="{{customer.address}}"required="required">
-			                        </div>									
-								</div>		
-								<div class="modal-footer">
-										<input type="hidden" id="startup-id">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="submit" id = "btnUpdate" name = "btnUpdate" class="button">Update</button>
-								</div>
-							</div>
-							</form>		
-						</div>
-					</div>
-						
-					
-					<!-- delete modal-->
-		<div class="modal fade" id="deletemodal-{{customer.id}}" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Delete Record of Customer?</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>	
-												
-					</div>
-					<form id="deleteForm" method="post" >
-					{% csrf_token %}
-					<div class="modal-body">
-						<input type="text" name="del-targetID" value = {{customer.id}} hidden>
-						Are you sure about that?						
-					</div>				
-					<div class="modal-footer">
-							<input type="hidden" id="startup-id">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							<button type="submit" id = "btnDelete" name = "btnDelete" class="button">Yes</button>
-					</div>
-				</div>
-			</form>
-			</div>
-		</div>
+    <body>
+            <div class="bg pink">
+            <h1 id="intro" class="shadow p-10 mb-10" style="margin-top:125px;">Customer Dashboard</h1><!-- placeimage here -->
 
 
-				    {% endfor %}
-				    
-				  </tbody>
-				</table>
-		<br><br><br><br><br><br>
-		</div>
-			</div>
-		</div>
+        <!-- The flexible grid (content) -->
+        <div class="container-fluid">
+        <div class="row">
+            
+          <div class="col-lg-12" style="background-color:rgba(255,255,255,0.6);">
+            
+        <div align="center">
+        <br><br>
+        <form role="form" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p align="right"><button><a type = "button" class="button button1" id="id_registration" href="{% url 'customer:register_view' %}" >Add Customer</button></a></p>
+        </form>
+                <table id="myTable" class="display table table-light" >
+                  <thead>
+                    <tr>
+                      <th scope="col">Customer ID</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Gender</th>
+                      <th scope="col">Date of Birth</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        
+                      <th scope="row">{{customer.id}}</th>
+                      <td>{{customer.name}}</td>
+                      <td>{{customer.status}}</td>
+                      <td>{{customer.gender}}</td>
+                      <td>{{customer.birthdate}}</td>
+                      <td>{{customer.address}}</td>
+                      <td>
+                                <a type="button" class="btn btn-mdb-color btn-rounded" 
+                                data-toggle="modal" data-target="#viewmodal-{{customer.id}}"> View </a>|
 
-		</div>
+                                <a type="button" class="btn btn-mdb-color btn-rounded"
+                                data-toggle="modal" data-target="#deletemodal-{{customer.id}}"> Delete</a>
+                       </td>
+                    </tr>
 
-		
+                    <!-- View modal-->
+                    <div class="modal fade" id="viewmodal-{{customer.id}}" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Customer Record Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>                   
+                                </div>
+                                <form id="updateForm" method="post" >
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <input type="text" name="customer-id" value = {{customer.id}} hidden>
+                                    <div class="form-group md-form font-weight-bold ">
+                                        <label for="custname" data-error="wrong" data-success="right">Name: </label>
+                                        <input id="custname" name="customer-name" type="text" class="form-control" value="{{customer.name}}" required="required">
+                                    </div>
+                                    <div class="form-group md-form font-weight-bold">
+                                        <label for="custstatus" data-error="wrong" data-success="right">Status: </label>
+                                        <select id="custstatus" name="customer-status" type="text" class="form-control" required="required">
+                                            <option hidden>{{customer.status}} </option>                                            
+                                            <option value="Single">Single </option>
+                                            <option value="Married">Married</option>
+                                            <option value="Widow/er">Widow/er </option>
+                                            <option value="Divorced">Divorced</option>
+                                         </select>
+                                    </div>
+                                    <div class="form-group md-form font-weight-bold">
+                                        <label for="custgender" data-error="wrong" data-success="right">Gender: </label>
+                                        <select id="custgender" name="customer-gender" type="text" class="form-control" required="required">
+                                            <option hidden>{{customer.gender}} </option>                                            
+                                            <option value="Male">Male </option>
+                                            <option value="Female">Female</option>
+                                         </select>                                      
+                                    </div>
+                                    <div class="form-group md-form font-weight-bold">
+                                        <label for="custbday" data-error="wrong" data-success="right">Birthdate: </label>
+                                        <input id="custbday" name="customer-bdate" type="date" class="form-control" 
+                                        value="{{customer.birthdate|date:'Y-m-d'}}">
+                                    </div>
+                                    <div class="form-group md-form font-weight-bold">
+                                        <label for="custaddres" data-error="wrong" data-success="right">Address: </label>
+                                        <input id="custaddres" name="customer-address" type="text" class="form-control" 
+                                        value="{{customer.address}}"required="required">
+                                    </div>                                  
+                                </div>      
+                                <div class="modal-footer">
+                                        <input type="hidden" id="startup-id">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" id = "btnUpdate" name = "btnUpdate" class="button">Update</button>
+                                </div>
+                            </div>
+                            </form>     
+                        </div>
+                    </div>
+                        
+                    
+                    <!-- delete modal-->
+        <div class="modal fade" id="deletemodal-{{customer.id}}" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Record of Customer?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>   
+                                                
+                    </div>
+                    <form id="deleteForm" method="post" >
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <input type="text" name="del-targetID" value = {{customer.id}} hidden>
+                        Are you sure about that?                        
+                    </div>              
+                    <div class="modal-footer">
+                            <input type="hidden" id="startup-id">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" id = "btnDelete" name = "btnDelete" class="button">Yes</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
 
 
-		<script>
-				$(document).ready( function () {
-				    $('#myTable').DataTable({
-							
-				    	});
-				} );
-		</script>
-		
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+        <br><br><br><br><br><br>
+        <table id="myTable2" class="display table table-light" >
+                  <thead>
+                    <tr>
+                      <th scope="col">Product ID</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Picture</th>
+                      <th scope="col">Sold by Dozen</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for product in products%}
+                    <tr>
+                      <th scope="row">{{product.id}}</th>
+                      <td>{{product.name}}</td>
+                      <td>{{product.price}}.00</td>
+                      {% if product.picture.url is not null %}
+                      <td><img src="{{product.picture.url}}" class="rounded-circle" width="100px" height="100px"></td>
+                      {% else %}
+                      <td>none</td>
+                      {% endif %}
+                      <td>{{product.byDozen}}</td>
+                    </tr>
+                    {% endfor%}
+
+        </div>
+        </div>
+        </div>
+        </div>
+
+        
+
+
+        <script>
+                $(document).ready( function () {
+                    $('#myTable').DataTable({
+                            
+                        });
+                } );
+        </script>
+        
 
 
 
-	</body>
+    </body>
 
 </html>
