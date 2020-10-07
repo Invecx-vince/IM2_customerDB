@@ -6,8 +6,6 @@ class Person(models.Model):
 	name = models.CharField(max_length = 100)
 	address = models.CharField(max_length = 50)
 	birthdate = models.DateField()
-	
-	
 	gender = models.CharField(max_length = 6)
 	
 	class Meta: #optional for not getting default table name which is projectname_ClassName
@@ -30,3 +28,19 @@ class Product(models.Model):
 	
 	class Meta: #optional for not getting default table name which is projectname_ClassName
 		db_table = "Product"
+
+class Cart(models.Model):
+	name = models.CharField(max_length = 100)
+	price = models.IntegerField(default = 0)
+	quantity = models.IntegerField(default = 0)
+
+	class Meta:
+		db_table = "Cart"
+
+class Order(Cart):
+	orderdate = models.DateField(null = True)
+	location = models.CharField(max_length = 100,null = True)
+
+	class Meta:
+		db_table = "Order"
+
