@@ -36,11 +36,13 @@ function showTxt(){
 		<form role="form" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
       {% csrf_token %}
 			<h4 class="shadow p-10 mb-10" style="background-color:#ff9999;margin:10px;border:5px solid;border-color:#ff3333;border-radius:15px;">Member's Access</h4>
-			<br><br>
-            <center><button type="submit" style="background-color:#f18973; width:30%; border-color:#f18973" class="btn btn-success btn-block" width="20px"> SIGN UP</button> </center>
+			      <br><br>
+            <center><button  id="custom" name="custom" type="submit" style="background-color:#f18973; width:30%; border-color:#f18973" class="btn btn-success btn-block" width="20px"> Customer Registration</button> </center>
             <br><br>
-            <center><button type="submit" style="background-color:#f18973; width:30%; border-color:#f18973" class="btn btn-success btn-block" width="20px"> LOGIN</button> </center>
-          </form>
+            <center><button  id="produkto" name="produkto" type="submit" style="background-color:#f18973; width:30%; border-color:#f18973" class="btn btn-success btn-block" width="20px"> Product Registration</button> </center>
+            <br><br>
+            <center><button  id="Browse" name="Browse" type="submit" style="background-color:#f18973; width:30%; border-color:#f18973" class="btn btn-success btn-block" width="20px"> Browse</button> </center>
+    </form>
 	
 
 <!-- The flexible grid (content) -->
