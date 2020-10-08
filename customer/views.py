@@ -28,13 +28,35 @@ class BoardView(View):
 				sex = request.POST.get("customer-gender")
 				up_cstmr = Customer.objects.filter(person_ptr_id = custID).update(name = namaewa , address = adres , birthdate = bday , status = tatus , gender = sex)
 				print(up_cstmr)
-				print('record updated')
+				print('customer record updated')
 			elif 'btnDelete' in request.POST:
 				custID = request.POST.get("del-targetID")
 				cusTard = Customer.objects.filter(person_ptr_id = custID).delete()
 				personbye = Person.objects.filter(id = custID).delete()
 				print(custID)
-				print('record with said custID is deleted')
+				print('customer record is deleted')
+			elif 'btnUpdate2' in request.POST:
+				prodID = request.POST.get("product-id")
+				namey = request.POST.get("product-name")
+				value = request.POST.get("product-price")
+				if(request.POST.get("product-byDoz")=="Yes"):
+					doz=True
+				else:
+					doz=False
+				# update_img = Product.objects.get(id=prodID).picture
+				# if request.FILES.get("product-pic",False) != False:
+				# 	update_img = Product.objects.get(id = prodID)
+				# 	# request.FILES.get("product-pic")
+				# 	update_img.picture = request.FILES["product-pic"]
+				# 	update_img.save()
+				up_prod = Product.objects.filter(id = prodID).update(name = namey, price = value, byDozen = doz)
+				print(up_prod)
+				print('product record updated')
+			elif 'btnDelete2' in request.POST:
+				prodID = request.POST.get("dele-targetID")
+				prodBye = Product.objects.filter(id = prodID).delete()
+				print(prodID)
+				print('product record is deleted')
 		return redirect('customer:board_view')
 
 		
@@ -108,7 +130,7 @@ class ProdRegView(View):
 			form.save()
 
 			# return HttpResponse('Customer Recorded!!!')
-			return redirect('customer:board_view')
+			return redirect('customer:products_view')
 			# render(request,'warehouse/dashboard.html')
 
 		else:
@@ -179,10 +201,3 @@ class CartView(View):
 				print(orderID)
 				print('Order is deleted')
 		return redirect('customer:cart_view')
-# def display_prod_pics(request): 
-  
-#     if request.method == 'GET': 
-#         # getting all the objects of hotel. 
-#         prod = Product.objects.all()  
-#         return render((request, 'warehouse/dashboard.html', 
-#                      {'prod_images' : prod})) 
