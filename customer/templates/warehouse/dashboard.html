@@ -162,7 +162,10 @@
                     
                   </tbody>
                 </table>
-        <br><br><br><br><br><br>
+        <br><br>
+        <h1 id="intro" class="shadow p-10 mb-10" style="margin-top:125px;">Product Dashboard</h1>
+        {% csrf_token %}
+        <p align="right"><button><a type = "button" class="button button1" id="id_registration" href="{% url 'customer:prodreg_view' %}" >Add Product</button></a></p>
         <table id="myTable2" class="display table table-light" >
                   <thead>
                     <tr>
@@ -171,6 +174,7 @@
                       <th scope="col">Price</th>
                       <th scope="col">Picture</th>
                       <th scope="col">Sold by Dozen</th>
+                      <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -185,15 +189,106 @@
                       <td>none</td>
                       {% endif %}
                       <td>{{product.byDozen}}</td>
+                    <td>
+                                <a type="button" class="btn btn-mdb-color btn-rounded" 
+                                data-toggle="modal" data-target="#viewmodal-{{product.id}}"> View </a>|
+
+                                <a type="button" class="btn btn-mdb-color btn-rounded"
+                                data-toggle="modal" data-target="#deletemodal-{{product.id}}"> Delete</a>
+                       </td>
                     </tr>
+
+                    <!-- View modal-->
+                    <div class="modal fade" id="viewmodal-{{product.id}}" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Customer Record Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>                   
+                                </div>
+                                <form id="updateForm" method="post" >
+                                  <!-- <th scope="col">Product ID</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Picture</th>
+                      <th scope="col">Sold by Dozen</th> -->
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <input type="text" name="product-id" value = {{product.id}} hidden>
+                                    <div class="form-group md-form font-weight-bold ">
+                                        <label for="prodname" data-error="wrong" data-success="right">Name: </label>
+                                        <input id="prodname" name="product-name" type="text" class="form-control" value="{{product.name}}" required="required">
+                                    </div>
+                                    <div class="form-group md-form font-weight-bold">
+                                        <label for="prodprice" data-error="wrong" data-success="right">Price: </label>
+                                        <input id="prodprice" name="product-price" type="number" class="form-control" 
+                                        value="{{product.price}}"required="required" step="5">
+                                    </div>
+                                    <div class="form-group md-form font-weight-bold">
+                                        <label for="prodprice" data-error="wrong" data-success="right">By Dozen: </label>
+                                        <input id="prodbyDoz" name="product-byDoz" type="checkbox" class="form-control" 
+                                        value="Yes">
+                                    </div>
+                                    <!-- <div class="form-group md-form font-weight-bold">
+                                        <label for="prodpic" data-error="wrong" data-success="right">By Dozen: </label>
+                                        <input id="prodpic" name="product-pic" type="file" class="form-control" enctype="multipart/form-data" >
+                                    </div>  -->                          
+                                </div>      
+                                <div class="modal-footer">
+                                        <input type="hidden" id="startup-id">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" id = "btnUpdate2" name = "btnUpdate2" class="button">Update</button>
+                                </div>
+                            </div>
+                            </form>     
+                        </div>
+                    </div>
+                        
+                    
+                    <!-- delete modal-->
+        <div class="modal fade" id="deletemodal-{{product.id}}" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden ="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Record of Product?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>   
+                                                
+                    </div>
+                    <form id="deleteForm" method="post" >
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <input type="text" name="dele-targetID" value = {{product.id}} hidden>
+                        Are you sure about that?                        
+                    </div>              
+                    <div class="modal-footer">
+                            <input type="hidden" id="startup-id">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" id = "btnDelete2" name = "btnDelete2" class="button">Yes</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
                     {% endfor%}
+                  </tbody>
+                </table>
 
         </div>
         </div>
         </div>
         </div>
 
-        
+        <script>
+                $(document).ready( function () {
+                    $('#myTable2').DataTable({
+                            
+                        });
+                } );
+        </script>
 
 
         <script>
